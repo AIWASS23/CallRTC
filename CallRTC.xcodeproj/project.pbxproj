@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1484F64D2E61C52200395302 /* WebRTC in Frameworks */ = {isa = PBXBuildFile; productRef = 1484F64C2E61C52200395302 /* WebRTC */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		1484F6342E61C38400395302 /* CallRTC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallRTC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1484F64D2E61C52200395302 /* WebRTC in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = CallRTC;
 			packageProductDependencies = (
+				1484F64C2E61C52200395302 /* WebRTC */,
 			);
 			productName = CallRTC;
 			productReference = 1484F6342E61C38400395302 /* CallRTC.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 1484F62B2E61C38400395302;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1484F64B2E61C52200395302 /* XCRemoteSwiftPackageReference "WebRTC" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1484F6352E61C38400395302 /* Products */;
 			projectDirPath = "";
@@ -341,6 +350,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1484F64B2E61C52200395302 /* XCRemoteSwiftPackageReference "WebRTC" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stasel/WebRTC.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 139.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1484F64C2E61C52200395302 /* WebRTC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1484F64B2E61C52200395302 /* XCRemoteSwiftPackageReference "WebRTC" */;
+			productName = WebRTC;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1484F62C2E61C38400395302 /* Project object */;
 }
