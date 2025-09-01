@@ -14,9 +14,22 @@
 		1484F6342E61C38400395302 /* CallRTC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallRTC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		14B7B8E12E65D93C006A7623 /* Exceptions for "CallRTC" folder in "CallRTC" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1484F6332E61C38400395302 /* CallRTC */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1484F6362E61C38400395302 /* CallRTC */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				14B7B8E12E65D93C006A7623 /* Exceptions for "CallRTC" folder in "CallRTC" target */,
+			);
 			path = CallRTC;
 			sourceTree = "<group>";
 		};
@@ -262,6 +275,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CallRTC/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We use your camera for secure video.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We use your microphone for voice and video calls.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -301,6 +317,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CallRTC/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We use your camera for secure video.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We use your microphone for voice and video calls.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

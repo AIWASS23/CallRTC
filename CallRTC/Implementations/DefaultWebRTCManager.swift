@@ -12,7 +12,7 @@ import UIKit
 import Combine
 import AVFoundation
 
-final class DefaultWebRTCManager: NSObject, WebRTCManager {
+class DefaultWebRTCManager: NSObject, WebRTCManager {
     var eventPublisher: AnyPublisher<WebRTCEvent, Never> {
         subject.eraseToAnyPublisher()
     }
