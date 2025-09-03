@@ -11,10 +11,16 @@ import WebRTC
 struct CallView: View {
     @StateObject private var viewModel: CallViewModel
     
+    // Views de vídeo do WebRTC
+    private let localVideoView = RTCMTLVideoView()
+    private let remoteVideoView = RTCMTLVideoView()
+    
     init(engine: CallEngine, config: CallConfiguration?) {
-        _viewModel = StateObject(
-            wrappedValue: CallViewModel(callEngine: engine, callConfiguration: config)
-        )
+        let vm = CallViewModel(callEngine: engine, callConfiguration: config)
+        _viewModel = StateObject(wrappedValue: vm)
+        
+        self.localVideoView.videoContentMode = .scaleAspectFill
+        self.remoteVideoView.videoContentMode = .scaleAspectFill
     }
     
     var body: some View {
@@ -22,45 +28,43 @@ struct CallView: View {
             Text("📞 Chamada em andamento")
                 .font(.title2)
             
+            // Video remoto
+            RTCVideoView(renderer: remoteVideoView)
+                .frame(maxWidth: .infinity, maxHeight: 400)
+                .background(Color.black)
+                .cornerRadius(12)
+            
+            // Video local (PIP)
+            RTCVideoView(renderer: localVideoView)
+                .frame(width: 120, height: 180)
+                .cornerRadius(12)
+                .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.white, lineWidth: 1))
+            
             HStack(spacing: 16) {
-                Button("Aceitar") {
-                    viewModel.acceptCall()
-                }
-                Button("Recusar") {
-                    viewModel.declineCall()
-                }
-                Button("Encerrar") {
-                    viewModel.endCall()
-                }
+                Button("Aceitar") { viewModel.acceptCall() }
+                Button("Recusar") { viewModel.declineCall() }
+                Button("Encerrar") { viewModel.endCall() }
             }
             
             HStack(spacing: 16) {
-                Button("Microfone") {
-                    viewModel.manageMicrophone()
-                }
-                Button("Câmera") {
-                    viewModel.manageCamera()
-                }
-                Button("Trocar Câmera") {
-                    viewModel.switchCamera()
-                }
+                Button("Microfone") { viewModel.manageMicrophone() }
+                Button("Câmera") { viewModel.manageCamera() }
+                Button("Trocar Câmera") { viewModel.switchCamera() }
             }
         }
         .padding()
-        // Escuta os eventos vindos do CallViewModel
         .onReceive(viewModel.publisher) { event in
-            switch event {
-            case .callEnded:
-                print("⚠️ A chamada terminou — você pode fechar a tela aqui")
+            if case .callEnded = event {
+                print("⚠️ A chamada terminou — feche a tela aqui")
             }
         }
         .onAppear {
+            // 🔑 agora configuramos os renderers aqui
+            viewModel.setupRenderers(local: localVideoView, remote: remoteVideoView)
             viewModel.processCall()
         }
     }
 }
-
-
 
 struct RTCVideoView: UIViewRepresentable {
     var renderer: RTCVideoRenderer

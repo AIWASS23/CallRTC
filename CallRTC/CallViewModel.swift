@@ -23,6 +23,7 @@ class CallViewModel: ObservableObject {
     private let subject = PassthroughSubject<Event, Never>()
     private var callEngine: CallEngine
     private let callConfiguration: CallConfiguration?
+    private var adapter: CallEngineUIAdapter?
     
     weak var callEngineDelegate: CallEngineDelegate? {
         set {
@@ -46,6 +47,12 @@ class CallViewModel: ObservableObject {
         if let config = callConfiguration {
             callEngine.startCall(config)
         }
+    }
+    
+    func setupRenderers(local: RTCVideoRenderer, remote: RTCVideoRenderer) {
+        let adapter = CallEngineUIAdapter(localRenderer: local, remoteRenderer: remote)
+        self.adapter = adapter
+        self.callEngineDelegate = adapter 
     }
     
     private func bindCallEngine() {
